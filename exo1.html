@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>exo1</title>
+</head>
+<body>
+     <h2>Ma position</h2>
+
+    <button onclick="getPosition()">
+        Afficher ma position
+    </button>
+
+    <p id="result"></p>
+
+    <script>
+        function getPosition() {
+
+            if (navigator.geolocation) {
+
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+
+                        let lat = position.coords.latitude;
+                        let lon = position.coords.longitude;
+
+                        document.getElementById("result").innerHTML =
+                            "Latitude : " + lat +
+                            "<br>Longitude : " + lon;
+
+                    },
+                    function(error) {
+                        document.getElementById("result").innerHTML =
+                            "Erreur : " + error.message;
+                    }
+                );
+
+            } else {
+                document.getElementById("result").innerHTML =
+                    "Geolocation non supportée";
+            }
+        }
+    </script>
+</body>
+</html>
